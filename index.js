@@ -96,21 +96,272 @@ console.log(numberFormat([9, 1, 3, 3, 2, 3, 3, 6, 7, 3]));
 
 // Q NO 11:
 // Create a function  that returns an array of strings sorted by length in ascending order.
+const arrStrs = ["pineapple", "orange", "mango", "banana", "apple"];
+function sortbystrlen(arr) {
+  return arr.sort((a, b) => a.length - b.length);
+}
+console.log(sortbystrlen(arrStrs));
 
 // Q NO 12:
 // Create a function that takes an array of arrays with numbers. Return a new (single) array with the largest numbers of each.
 // Example:
 // ​​findLargestNums [[4, 2, 7, 1], [20, 70, 40, 90], [1, 2, 0]] ➞ [7, 90, 2]​
 
+function findlrgNum(arr) {
+  let res = [];
+  for (let i = 0; i < arr.length; i++) {
+    let subArr = arr[i];
+    let subMax = subArr[0];
+    for (let j = 0; j < subArr.length; j++) {
+      if (subArr[j] > subMax) {
+        subMax = subArr[j];
+      }
+    }
+    res.push(subMax);
+  }
+  return res;
+}
+const subNums = [
+  [4, 2, 7, 1],
+  [20, 70, 100, 40, 90],
+  [1, 2, 0],
+];
+console.log(findlrgNum(subNums));
+
 // Q NO 13:
 // Create a function that takes an array of numbers and returns the second largest number.
 // Example:
 // secondlargest([10, 40, 30, 20, 50]) ➞ 40
 
+function SecondLargestFunc(arr) {
+  let largest = arr[0];
+  let SecondLargest = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > largest) {
+      SecondLargest = largest;
+      largest = arr[i];
+    }
+  }
+  return `Second Largest Number is ${SecondLargest}`;
+}
+
+let testArr = [10, 40, 30, 20, 50, 60];
+console.log(SecondLargestFunc(testArr));
+
+// by using method
+const secndLargst = (arr) => {
+  return arr.sort((a, b) => b - a)[1];
+};
+console.log(secndLargst(testArr));
+
 // Q NO 14:
 // Create a function that takes an array of items, removes all duplicate items and returns a new array in the same sequential order as the old array (minus duplicates).
 // Example: removeDups([1, 0, 1, 0]) ➞ [1, 0]  removeDups(["The", "big", "cat","The",]) ➞ ["The", "big", "cat" ]
 
+function rDups(arr) {
+  let uniqArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (uniqArr.indexOf(arr[i]) == -1) {
+      uniqArr.push(arr[i]);
+    }
+  }
+  return uniqArr;
+}
+let testArr2 = [1, 0, 1, 0];
+console.log(rDups(testArr2));
+
+const removeDupsBySets = (arr) => new Set(arr);
+console.log(removeDupsBySets(testArr2));
+
 // Q NO 15:
 // Create a function that takes an array of integers as an argument and returns a unique number from that array. All numbers except unique ones have the same
 // number of occurrences in the array. Example: findSingleNumber([2, 2, 2, 3, 4, 4, 4]) ➞ 3*/
+function nonRepeated(arr) {
+  let uniqValue = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr.indexOf(arr[i]) === arr.lastIndexOf(arr[i])) {
+      uniqValue = arr[i];
+    }
+  }
+  return uniqValue;
+}
+let testArr4 = [2, 2, 2, 3, 4, 4, 4];
+console.log(nonRepeated(testArr4));
+
+function Repeated(arr) {
+  let uniqValue = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) {
+      uniqValue.push(arr[i]);
+    }
+  }
+  return uniqValue;
+}
+
+console.log(Repeated(testArr4));
+
+console.log("********************************* 16>>>>>>");
+
+// Q NO 16
+// Create a function that takes two strings as arguments and returns the number of times the first string (the single character) is found in the second string.
+// Example:
+// charCount("c", "Chamber of secrets") ➞ 1
+function lettersCounter(letter, string) {
+  let count = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (letter === string[i]) count++;
+  }
+  return count;
+}
+console.log(lettersCounter("i", "shirdi sai"));
+
+// Q NO 17
+// Create a function that takes a string and returns the number (count) of vowels
+// contained within it.
+// Example:
+// countVowels("Celebration") ➞ 5
+function countOfVowels(string) {
+  let count = 0;
+  let vowels = ["a", "e", "i", "o", "u"];
+  for (let i = 0; i < string.length; i++) {
+    for (let j = 0; j < vowels.length; j++) {
+      if (string.toLowerCase()[i] === vowels[j]) {
+        count++;
+      }
+    }
+  }
+  return `${string} -- count of vowels ${count}`;
+}
+console.log(countOfVowels("Saikumar"));
+
+// Q NO 18
+// Given a string, create a function to reverse the case. All lower-cased letters should be upper-cased, and vice versa.
+// Example:
+// reverseCase("Happy Birthday") ➞ "hAPPY bIRTHDAY"
+function caseChange(word) {
+  let res = "";
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === word[i].toUpperCase()) {
+      res = res + word[i].toLowerCase();
+    } else {
+      res = res + word[i].toUpperCase();
+    }
+  }
+  return res;
+}
+console.log(caseChange("Sai Kumar"));
+
+// Q NO 19
+// Take one integer n, loop till n and pass each value to a function, create a function that takes one integer parameter, and multiply with 2 in every integer.
+// Input: n=5
+// Output: 2 4 6 8 10
+// Explanation: Loop start with 1 go till 5 bcoz n=5
+// 1 x 2 =2, 2 x 2=4, 3 x 2=6
+function rangeMultBy2(n) {
+  let multiplier = 2;
+  for (let i = 1; i <= n; i++) {
+    console.log(i * multiplier);
+  }
+}
+rangeMultBy2(5);
+
+// Q NO 20
+// Create Function that will take one parameter and return type of the data.
+// Input: 500
+// Output: Integer
+// Input: Coding
+// Output: String
+function checkTypeOf(param) {
+  return typeof param;
+}
+console.log(checkTypeOf(500));
+
+// Q NO 21
+// Program to find greatest of three numbers(using ternery operator).
+// Input: 4 8 2
+// Output: 8 is gretest
+function greatestOf3(a, b, c) {
+  return a > b && a > c
+    ? `${a} is greatest`
+    : b > c
+    ? `${b} is greatest`
+    : `${c} is greatest`;
+}
+console.log(greatestOf3(9, 11, 1));
+
+// Q NO 22
+// Program to find factorial of number.
+// Input: n=5
+// Output: 120
+// Explanation: 5 x 4 x 3 x 2 x 1 = 120
+function factorial(num){
+  let res = 1
+  for(let i = 1; i <= num; i++){
+    res =  res * i //1 2 6 24 120
+  }
+  return res
+}
+console.log(factorial(5))
+
+// Q NO 23
+// Program to arrange numbers in ascending order
+// Input: [2,3,1,5,4]
+// Output: [1,2,3,4,5]
+//  Sort the Array using loop only(you can not use predefined function).
+function ascendingSort(arr){
+ 
+  for(let i = 0; i < arr.length ; i++){
+   for(let j = 0; j < arr.length ; j++ ){
+    if (arr[j] > arr[j + 1]){ 
+      [arr[j],arr[j + 1]] = [arr[j +1],arr[j]]
+    }
+   }
+  }
+  return arr
+}
+console.log(ascendingSort([2,3,1,5,4]))
+
+//descending 
+function descendingSort(arr){
+ 
+  for(let i = 0; i < arr.length - 1 ; i++){
+   for(let j = 0; j < arr.length - 1 - i ; j++ ){
+    if (arr[j] < arr[j + 1]){ 
+      [arr[j],arr[j + 1]] = [arr[j +1],arr[j]]
+    }
+   }
+  }
+  return arr
+}
+console.log(descendingSort([2,3,1,5,4]))
+
+
+// Q NO 24
+// Print Patter using loop
+// 1
+// 1 2
+// 1 2 3
+// 1 2 3 4
+//  1 2 3 4 5
+
+// Q NO 25
+// Program to Calculate the Power of a Number(using loop only).
+// Input: n=5, p=3
+// Output: 5 ^ 3 = 125
+// Explanation: 5 x 5 x 5 = 12
+
+//Q NO 26
+// Program to Check Whether a Number is Prime or Not
+// Input: 9
+// Output: 9 is not a prime no
+// Input: 7
+// Output : 7 is a prime no
+
+// Q NO 27
+// Program to find LCM of two numbers using while loop
+// Input: 15 50
+// Output: Lcm of 15 and 50 is 150
+
+// Q NO 28
+// Program to Display Characters from A to Z Using Loop with count.
+// Output: A1 B2 C3 D4 E5 F6 ……. Z26
