@@ -50,7 +50,6 @@ function power(voltage, current) {
 }
 console.log(power(4, 5));
 
-// *** DAY - 2 ***
 
 // Q NO 6:
 // Write a function that returns the string "something" joined with space " " and the given argument a;
@@ -200,7 +199,6 @@ function Repeated(arr) {
 
 console.log(Repeated(testArr4));
 
-console.log("********************************* 16>>>>>>");
 
 // Q NO 16
 // Create a function that takes two strings as arguments and returns the number of times the first string (the single character) is found in the second string.
@@ -294,47 +292,44 @@ console.log(greatestOf3(9, 11, 1));
 // Input: n=5
 // Output: 120
 // Explanation: 5 x 4 x 3 x 2 x 1 = 120
-function factorial(num){
-  let res = 1
-  for(let i = 1; i <= num; i++){
-    res =  res * i //1 2 6 24 120
+function factorial(num) {
+  let res = 1;
+  for (let i = 1; i <= num; i++) {
+    res = res * i; //1 2 6 24 120
   }
-  return res
+  return res;
 }
-console.log(factorial(5))
+console.log(factorial(5));
 
 // Q NO 23
 // Program to arrange numbers in ascending order
 // Input: [2,3,1,5,4]
 // Output: [1,2,3,4,5]
 //  Sort the Array using loop only(you can not use predefined function).
-function ascendingSort(arr){
- 
-  for(let i = 0; i < arr.length ; i++){
-   for(let j = 0; j < arr.length ; j++ ){
-    if (arr[j] > arr[j + 1]){ 
-      [arr[j],arr[j + 1]] = [arr[j +1],arr[j]]
+function ascendingSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
     }
-   }
   }
-  return arr
+  return arr;
 }
-console.log(ascendingSort([2,3,1,5,4]))
+console.log(ascendingSort([2, 3, 1, 5, 4]));
 
-//descending 
-function descendingSort(arr){
- 
-  for(let i = 0; i < arr.length - 1 ; i++){
-   for(let j = 0; j < arr.length - 1 - i ; j++ ){
-    if (arr[j] < arr[j + 1]){ 
-      [arr[j],arr[j + 1]] = [arr[j +1],arr[j]]
+//descending
+function descendingSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - 1 - i; j++) {
+      if (arr[j] < arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
     }
-   }
   }
-  return arr
+  return arr;
 }
-console.log(descendingSort([2,3,1,5,4]))
-
+console.log(descendingSort([2, 3, 1, 5, 4]));
 
 // Q NO 24
 // Print Patter using loop
@@ -342,13 +337,35 @@ console.log(descendingSort([2,3,1,5,4]))
 // 1 2
 // 1 2 3
 // 1 2 3 4
-//  1 2 3 4 5
+// 1 2 3 4 5
+function patternNums1(n) {
+  for (let i = 1; i <= n; i++) {
+    res = "";
+    for (let j = 1; j <= i; j++) {
+      res += j + " ";
+    }
+    console.log(res);
+  }
+}
+patternNums1(5);
 
 // Q NO 25
 // Program to Calculate the Power of a Number(using loop only).
 // Input: n=5, p=3
 // Output: 5 ^ 3 = 125
-// Explanation: 5 x 5 x 5 = 12
+// Explanation: 5 x 5 x 5 = 125
+function powerOfNum(num, pow) {
+  return num ** pow;
+}
+console.log(powerOfNum2(5, 2));
+
+function powerOfNum2(num, pow) {
+  res = num;
+  for (let i = 1; i <= pow; i++) {
+    res = res * num;
+  }
+  return res;
+}
 
 //Q NO 26
 // Program to Check Whether a Number is Prime or Not
@@ -356,12 +373,96 @@ console.log(descendingSort([2,3,1,5,4]))
 // Output: 9 is not a prime no
 // Input: 7
 // Output : 7 is a prime no
+function isPrimeOrNot(n) {
+  if (n <= 0) {
+    return "not a prime number";
+  }
+  let flag = true;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      flag = false;
+    }
+  }
+  return flag ? `${n} is prime` : `${n} is not prime`;
+}
+console.log(isPrimeOrNot(4));
 
 // Q NO 27
 // Program to find LCM of two numbers using while loop
 // Input: 15 50
 // Output: Lcm of 15 and 50 is 150
+function lcmOf2Nums(n1, n2) {
+  let max = n1 > n2 ? n1 : n2;
+  let min = n1 < n2 ? n1 : n2;
+  let LCM = max;
+  while (LCM % min !== 0) {
+    LCM += max;
+  }
+  return LCM;
+}
+console.log(lcmOf2Nums(6, 2));
 
 // Q NO 28
 // Program to Display Characters from A to Z Using Loop with count.
 // Output: A1 B2 C3 D4 E5 F6 ……. Z26
+function displayChars() {
+  let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let count = 0;
+  for (let i = 0; i < chars.length; i++) {
+    count++;
+    console.log(`${chars[i]}${count}`);
+  }
+}
+displayChars();
+
+// Q NO 29
+// Program to find missing number
+// Input: n=5(length of array), arr= [5,3,1,4]
+// Output: 2 is missing
+// Using loop only(you can not use predefined function
+function missingNumber(n, arr) {
+  let expectedSum = (n * (n + 1)) / 2;
+  let actualSum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    actualSum += arr[i];
+  }
+  return expectedSum - actualSum;
+}
+console.log(missingNumber(7, [1, 2, 3, 4, 5, 6]));
+
+// Q NO 30
+// Program to count vowels and consonants in a given String.
+// Input: i am ram
+// Output: 3 vowels 3 consonants
+function countVowelsConsonants(str) {
+  let vowels = ["a", "e", "i", "o", "u"];
+  let string = str.toLowerCase();
+  let countOfVowels = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (vowels.includes(string[i])) {
+      countOfVowels++;
+    }
+  }
+  return `count of vowels ${countOfVowels} count of consonants ${
+    str.length - countOfVowels
+  }`;
+}
+let name = "SaiKumar";
+console.log(countVowelsConsonants(name));
+
+// Q NO 31
+// program to insert the elements of an array for specific index.
+// Input: [1,2,3,4,5,7,8,9,10] , index=5
+// Output: [1,2,3,4,5,6,78,9,10]
+
+
+// Q NO 32
+// Reverse a number using while Loop
+// Input: 123
+// Output: 321
+
+// Q NO 33
+// Count occurrence of number:
+// Input: [1,6,3,1,5,9,7,2,1,9,3,7,8,9,10] , no find=7
+// Output: 7 present 2 times.
+
