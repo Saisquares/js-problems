@@ -50,7 +50,6 @@ function power(voltage, current) {
 }
 console.log(power(4, 5));
 
-
 // Q NO 6:
 // Write a function that returns the string "something" joined with space " " and the given argument a;
 function smtngAdd(a) {
@@ -198,7 +197,6 @@ function Repeated(arr) {
 }
 
 console.log(Repeated(testArr4));
-
 
 // Q NO 16
 // Create a function that takes two strings as arguments and returns the number of times the first string (the single character) is found in the second string.
@@ -455,14 +453,262 @@ console.log(countVowelsConsonants(name));
 // Input: [1,2,3,4,5,7,8,9,10] , index=5
 // Output: [1,2,3,4,5,6,78,9,10]
 
+function insertAtIndex(value, index, arr) {
+  if (index < 0 || index > arr.length) {
+    return "enter valid index";
+  }
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (i === index - 1) {
+      newArr.push(value);
+    }
+    newArr.push(arr[i]);
+  }
+  return newArr;
+}
+console.log(insertAtIndex(2, 3, [0, 1, 3]));
 
 // Q NO 32
 // Reverse a number using while Loop
 // Input: 123
 // Output: 321
-
+function reversenum(num) {
+  let reverseNum = 0;
+  while (num !== 0) {
+    reverseNum = reverseNum * 10 + (num % 10);
+    num = parseInt(num / 10);
+  }
+  return reverseNum;
+}
+console.log(reversenum(456));
 // Q NO 33
 // Count occurrence of number:
 // Input: [1,6,3,1,5,9,7,2,1,9,3,7,8,9,10] , no find=7
 // Output: 7 present 2 times.
+function countValue(value, arr) {
+  count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (value === arr[i]) {
+      count++;
+    }
+  }
+  return `${value} present ${count} times`;
+}
+console.log(countValue(7, [1, 6, 3, 1, 5, 9, 7, 2, 1, 9, 3, 7, 8, 7, 9, 10]));
 
+console.log("************* Medium ***************");
+//********************** Difficulty Level : Medium ***********************
+// Q NO 1
+// Write a function that converts an object into an array, where each element
+// represents a key-value pair in the form of an array.
+// Examples :
+// toArray({ a: 1, b: 2 }) ➞ [["a", 1], ["b", 2]]
+// toArray({ shrimp: 15, tots: 12 }) ➞ [["shrimp", 15], ["tots",12]]
+// toArray({}) ➞ []
+function object2Arr(obj) {
+  let arr = Object.entries(obj);
+  return arr;
+}
+// console.log(object2Arr({ a: 1, b: 2 }))
+
+function objToArr(obj) {
+  let arrOfArr = [];
+  let keys = Object.keys(obj);
+  for (let i = 0; i < keys.length; i++) {
+    let temp = [keys[i], obj[keys[i]]];
+    arrOfArr.push(temp);
+  }
+  return arrOfArr;
+}
+console.log(objToArr({ a: 1, b: 2 }));
+
+// Q NO 2
+// Create a function that takes two numbers as arguments (num, length) and
+// returns an array of multiples of num until the array length reaches length.
+// Examples :
+// arrayOfMultiples(7, 5) ➞ [7, 14, 21, 28, 35]
+// arrayOfMultiples(12, 10) ➞ [12, 24, 36, 48, 60, 72, 84, 96, 108, 120]
+// arrayOfMultiples(17, 6) ➞ [17, 34, 51, 68, 85, 102]
+function arrOfMult(num, len) {
+  let res = [];
+  for (let i = 1; i <= len; i++) {
+    res.push(num * i);
+  }
+  return res;
+}
+console.log(arrOfMult(7, 5));
+
+// Q NO 3
+// Create the function that takes an array with objects and returns the sum of people's budgets.
+// Examples :
+// getBudgets([
+//  { name: "John", age: 21, budget: 23000 },
+//  { name: "Steve", age: 32, budget: 40000 },
+//  { name: "Martin", age: 16, budget: 2700 }
+// ]) ➞ 65700
+getBudgets = [
+  { name: "John", age: 21, budget: 29000 },
+  { name: "Steve", age: 32, budget: 32000 },
+  { name: "Martin", age: 16, budget: 1600 },
+];
+
+function pplBudjet(arr) {
+  let budget = 0;
+  for (let i = 0; i < arr.length; i++) {
+    budget = budget + arr[i].budget;
+  }
+  return budget;
+}
+// method 2
+function pplBudjet2(arr) {
+  let totalBudget = arr.reduce((prev, cur) => {
+    return prev + cur.budget;
+  }, 0);
+  return totalBudget;
+}
+console.log(pplBudjet2(getBudgets));
+
+// Q NO 4
+// Create a function that takes an array of objects like { name: "John", notes:
+// [3, 5, 4]} and returns an array of objects like { name: "John", avgNote: 4
+// }. If a student has no notes (an empty array) then let's assume avgNote: 0.
+// Example :
+// [
+//  { name: "John", notes: [3, 5, 4]}
+// ] ➞ [
+//  { name: "John", avgNote: 4 }
+// ]
+function avgNotes(arr) {
+  let ArrOfobj = [{ name: arr[0].name, avgNote: 0 }];
+  let note = arr[0].notes;
+  let total = 0;
+  for (let i = 0; i < note.length; i++) {
+    total += note[i];
+  }
+  note.length > 0 ? (ArrOfobj[0].avgNote = total / note.length) : 0;
+  return ArrOfobj;
+}
+console.log(avgNotes([{ name: "joe", notes: [1, 2, 8, 9] }]));
+
+// Q NO 5
+//Create a function that moves all capital letters to the front of a word.
+// Examples :
+// capToFront("hApPy") ➞ "APhpy"
+// capToFront("moveMENT") ➞ "MENTmove"
+// capToFront("shOrtCAKE") ➞ "OCAKEshrt"
+function capToFront(str) {
+  let caps = "";
+  let smalls = "";
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str.toUpperCase()[i]) {
+      caps += str[i];
+    } else {
+      smalls += str[i];
+    }
+  }
+  return `${caps + smalls}`;
+}
+console.log(capToFront("SaiKUmar"));
+
+// Q NO 6
+// Count each occurrence of number(can not use predefined function).
+// Input: [1,6,3,1,5,9,7,2,1,9,3,7,8,9,10] , no find=7
+// Output: 1 present 2 times
+
+function findOccurance(value, arr) {
+  count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (value === arr[i]) count++;
+  }
+  return `${value} present ${count} times`;
+}
+console.log(findOccurance(2, [1, 6, 3, 1, 5, 9, 7, 2, 1, 9, 3, 7, 8, 9, 10]));
+
+// Q NO 7
+// Write a function that accepts an array of strings. Return the longest string(can not
+//   use predefined function).
+//   Input: [‘nik’, ’mikhil’, ’Cow’,’Elephant’]
+//   Output: Elephant
+function longestString(arr) {
+  let longest = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length > longest.length) {
+      longest = arr[i];
+    }
+  }
+  return longest;
+}
+console.log(longestString(["nik", "mikhil", "Cow", "Elephant"]));
+
+// Q NO 8
+// Most Commonly Used two Character in String(can not use predefined function)
+// Input: ‘Hii i am ram’
+// Output; i, a
+
+// Q NO 9
+// Write Program to remove duplicate elements in an array and sort it in descending
+// order(can not use predefined function)
+// Input: [5,3,5,2,1,1,7,3,5,6];
+// Output: [7,6,5,32,1];
+function removeDuplicates(arr) {
+  let uniqarr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (uniqarr.indexOf(arr[i]) === -1) {
+      uniqarr.push(arr[i]);
+    }
+  }
+  for (let j = 0; j < uniqarr.length; j++) {
+    for (let k = 0; k < uniqarr.length - j - 1; k++) {
+      if (uniqarr[k] < uniqarr[k + 1]) {
+        [uniqarr[k + 1], uniqarr[k]] = [uniqarr[k], uniqarr[k + 1]];
+      }
+    }
+  }
+  return uniqarr;
+}
+console.log(removeDuplicates([5, 3, 5, 2, 1, 1, 4, 7, 3, 5, 6]));
+
+// Q NO 10
+// Write a Program to Remove brackets from an algebraic expression(can not use
+//   predefined function)
+//   Input: a + b-(9+c)=3
+//   Output: a + b- 9+c=3
+
+// Q NO 11
+// Write Program to remove duplicate elements in an array and sort it in Accending
+// order(can not use predefined function).
+// Input: [Z, A, P, C, A, Z , K, N, C]
+// Output: [A, C, K,N, P, Z]
+
+//  Q NO 12
+//  If subseq's array sequence is present in the array, returns true or else returns
+//  false.
+//  Let arr = [5, 7, 3, 2, 2, 7,-1, 5, -3, 13, 4]
+//  Example:
+//   Input : Subseq1 = [7, -1, 5, -3] Output: true
+//   Subseq2 = [7, -1, 4, -3] : false
+//   Subseq3 = [ -1] : true
+//   Subseq4 = [13, -3, 4, 1] : false
+
+
+// Q NO 13
+// Find sum of the Unique numbers:
+// Example : Let arr = [1, 2, 2, 1, 3, 5, 1];
+// The unique numbers are 1,2, 3, 5 so the sum should be 11.
+function sumOfUniqNums(arr) {
+  if (arr.length < 0) {
+    return "check the input";
+  }
+  let uniqArr = [];
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (uniqArr.indexOf(arr[i]) === -1) {
+      uniqArr.push(arr[i]);
+    }
+  }
+  for (let i = 0; i < uniqArr.length; i++) {
+    sum += uniqArr[i];
+  }
+  return sum;
+}
+console.log(sumOfUniqNums([1, 2, 2, 1, 3, 5, 1]));
